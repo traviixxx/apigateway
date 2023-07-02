@@ -1,0 +1,156 @@
+defaultEnv:
+  - name: ENVIRONMENT
+    value: stg
+
+TransitSecretsEngine:
+  name: stg-uhre-1
+
+mysql:
+  enabled: true
+  image:
+    repository: 
+    tag: 
+  primary:
+    extraEnvVarsSecret: stg-uhre-1
+  auth:
+    rootPassword: MYSQL_ROOT_PASSWORD
+    createDatabase: true
+    database: universal_hre
+    username: user
+    password: DB_PASSWORD
+
+redis:
+  enabled: false
+  architecture: standalone
+  auth:
+    enabled: true
+    existingSecret: stg-uhre-1
+    existingSecretPasswordKey: redispass
+
+rabbitmq:
+  enabled: false
+  image:
+    tag: 3.11.9-debian-11-r1
+  extraEnvVarsSecret: stg-uhre-1
+  auth:
+    username: user
+    password: RABBITMQ_PASSWORD
+  extraConfiguration: |-
+    default_vhost = universal_hre
+    default_permissions.configure = .*
+    default_permissions.read = .*
+    default_permissions.write = .*
+
+image:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-bo
+  pullPolicy: Always
+  tag: app-qat1.1.0
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 1
+
+service:
+  type: ClusterIP
+  serverPort: 8000
+  targetPort: 8000
+  protocol: TCP
+
+
+beatimage:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-beat
+  pullPolicy: Always
+  tag: 1.1.1
+
+cronimage:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-cron
+  pullPolicy: Always
+  tag: 1.1.1
+
+workerimage:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-worker
+  pullPolicy: Always
+  tag: 1.1.1
+
+
+Container: 
+  name: stg-uhre-1
+  env:
+    - name: BROKER_URL 
+      secret: qat-uhre-1/BROKER_URL
+    - name: RESULT_BACKEND_URL
+      secret: qat-uhre-1/RESULT_BACKEND_URL
+    - name: DB_URL 
+      secret: qat-uhre-1/DB_URL
+    - name: ELASTICSEARCH_URL
+      secret: qat-uhre-1/ELASTICSEARCH_URL
+    - name: REDIS_URI 
+      secret: qat-uhre-1/REDIS_URI
+    - name: REDBEAT_REDIS_URI 
+      secret: qat-uhre-1/REDBEAT_REDIS_URI
+    - name: DB_USER
+      secret: qat-uhre-1/DB_USER
+    - name: DB_PASSWORD
+      secret: qat-uhre-1/DB_PASSWORD
+    - name: DB_NAME
+      secret: qat-uhre-1/DB_NAME
+    - name: DB_HOST
+      secret: qat-uhre-1/DB_HOST
+    - name: TASK_TIME_LIMIT
+      secret: qat-uhre-1/TASK_TIME_LIMIT
+    - name: WORKER_MAX_TASKS_PER_CHILD
+      secret: qat-uhre-1/WORKER_MAX_TASKS_PER_CHILD
+    - name: WORKER_MAX_MEMORY_PER_CHILD
+      secret: qat-uhre-1/WORKER_MAX_MEMORY_PER_CHILD
+    - name: ELASTICSEARCH_HOST
+      secret: qat-uhre-1/ELASTICSEARCH_HOST
+    - name: ELASTICSEARCH_PORT
+      secret: qat-uhre-1/ELASTICSEARCH_PORT
+    - name: ELASTICSEARCH_USER
+      secret: qat-uhre-1/elasticuser
+    - name: ELASTICSEARCH_PASSWORD
+      secret: qat-uhre-1/elasticpass
+    - name: LOGGING_FILENAME
+      secret: qat-uhre-1/LOGGING_FILENAME
+    - name: LOGGING_LEVEL
+      secret: qat-uhre-1/LOGGING_LEVEL
+    - name: SMTP_USER
+      secret: qat-uhre-1/SMTP_USER
+    - name: SMTP_PASSWORD
+      secret: qat-uhre-1/SMTP_PASSWORD
+    - name: RABBITMQ_HOST
+      secret: qat-uhre-1/RABBITMQ_HOST
+    - name: RABBITMQ_PORT
+      secret: qat-uhre-1/RABBITMQ_PORT
+    - name: RABBITMQ_DEFAULT_USER
+      secret: qat-uhre-1/RABBITMQ_DEFAULT_USER
+    - name: RABBITMQ_DEFAULT_PASS
+      secret: qat-uhre-1/RABBITMQ_DEFAULT_PASS
+    - name: RABBITMQ_DEFAULT_VHOST
+      secret: qat-uhre-1/RABBITMQ_DEFAULT_VHOST
+    - name: REDIS_PASSWORD
+      secret: qat-uhre-1/redispass
+    - name: DEBUG
+      secret: qat-uhre-1/DEBUG
+    - name: SECRET_KEY
+      secret: qat-uhre-1/SECRET_KEY
+    - name: REDBEAT_KEY_PREFIX
+      secret: qat-uhre-1/REDBEAT_KEY_PREFIX
+    - name: REDBEAT_DISTRIBUTOR_TASK_NAME   
+      secret: qat-uhre-1/REDBEAT_DISTRIBUTOR_TASK_NAME
+    - name: DJANGO_SUPERUSER_USERNAME
+      secret: qat-uhre-1/djangouser
+    - name: DJANGO_SUPERUSER_PASSWORD
+      secret: qat-uhre-1/djangopass
+    - name: DJANGO_SUPERUSER_EMAIL
+      secret: qat-uhre-1/djangomail
+    - name: SERVER
+      secret: qat-uhre-1/SERVER
+    - name: RABBITMQ_PASSWORD
+      secret: qat-uhre-1/RABBITMQ_PASSWORD
+    - name: MYSQL_ROOT_PASSWORD
+      secret: qat-uhre-1/MYSQL_ROOT_PASSWORD
+
+

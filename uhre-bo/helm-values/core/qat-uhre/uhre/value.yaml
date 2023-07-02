@@ -1,0 +1,235 @@
+defaultEnv:
+  - name: ENVIRONMENT
+    value: qat
+
+TransitSecretsEngine:
+  name: qat-uhre-1
+# encrypted by https://vault-dev-tools.dev.g7y.io/ui/vault/secrets/transit/actions/kubernetes-secrets?action=encrypt
+  secrets:
+    - name: redispass
+      value: vault:v1:SalnkBQCwJUAWY9nH2kHSl9lUsxghDK3dnoGYSEXEp7V4Ecjcw==
+    - name: DB_USER
+      value: vault:v1:II1qOcqqKwHTgP4oBTMokRB4ZW9aZhher2pD2oDbXa8=
+    - name: djangopass
+      value: vault:v1:DvxHchcWhgMZBEcuPwAbSYwLICHkp/5zRmOAw9YZ+BocYFwH3/YZrsc=
+    - name: djangouser
+      value: vault:v1:JGyhnfhKBtA1dbGyDleorn5/JrWScWQnXEVFbrVD9UzTeeRWYQ==
+    - name: djangomail
+      value: vault:v1:yftOMQCGC2bxkujCVEWV4UluWJx2eB4CsxjfwnrE9yPvb5o1bYpEzk2swpKR+2UvYJZR
+    - name: elasticuser
+      value: vault:v1:K3bfD9k/cEBz9L1l8bPuObj6Q6n/tfwaSjwUrEg/zHFgdtk=
+    - name: elasticpass
+      value: vault:v1:K3bfD9k/cEBz9L1l8bPuObj6Q6n/tfwaSjwUrEg/zHFgdtk=
+    - name: SMTP_USER
+      value: vault:v1:SaId5whfnEqcPtp+ZokaTmsww3HltgRyhneqJls2F7MfK8SROO6o0/jeHbJYrbhO
+    - name: SMTP_PASSWORD
+      value: vault:v1:oFWQwTAHhY8fl0Kxcusd1j5iq1C5jeEZ/BbBRrVnZi9t05xC3OfUSvxF9TkNB+/nUe4s4ORByXzwtaV33iwiJH4rsqBiUd2v 
+    - name: BROKER_URL
+      value: vault:v1:BcXSvLbLMwDJ8T6bB7ybcD5Rvx6N6IktBVvRjFoA/ZTKG3q0ziSss4BgKb2kE/CKMLrlrUeG3uHKDAKfYjP0W9D0TX9ThsfnddHc5vgPTGIEg4xT4PJpdlPAZHo8324wNWbgugiZu8zBz6a1vVjLj/B9hcn9546s60Nuju1w2x+AIAuWyGLer1xswkKIzA==
+    - name: RESULT_BACKEND_URL
+      value: vault:v1:clXLn5sE7XoSMRSrp6UXjcH0REKIC51oN723aeWucWA9rznHRZjHSScfDAIJvovw4OMA1qOjyF8sLch42AXGYNx89f4hl9unoBfMvzbtP/m4CRkI7K27s5BF5Ou28hyqKqZ41nwYTTOnPXpryQsQdLOM9iC8WdvygMsFlEK331k=
+    - name: DB_URL
+      value: vault:v1:ynX1jf7IuTgOXBJ+HKQXWoc3K7tn/MuoqV/7PDnOtEB+vZezcV4tl294j4NRxxo9zB3NLdIr1UnRocp2z60sOwbTyNej/n4CmuZ8kqYP1VmRC6SMjl21Alfb5kl0+7h+WXP/2fA+9So1XEWyzFhfmFeN4wN6YyztMVa76AQ=
+    - name: ELASTICSEARCH_URL
+      value: vault:v1:S4ri0V8PADseJaBx0ORK9pjPLkj/GMvcfSlD/49nrNrnqetNtGwdp+2YJcnn3ZdcC1PrIhLfnuq5lPuzvI8XvvMAWwSO
+    - name: REDIS_URI 
+      value: vault:v1:qkx25bpDqOuia8PRNwAnPiAYH7oLi9F/purrFwjck6G5nyjHk4ThzV/PDU+VVyLS7mio6oG7CKRs9iVLq2PrIovaPKJ80zTRhvErJ6qM+FFwd5KmXnRz+Y6oL3s8j+Vs0CIyoZv4R8F6IA/Nd+hyITv2TUU=
+    - name: REDBEAT_REDIS_URI
+      value: vault:v1:x43yYbF7fhG/JkmIDFd8b8V6sjdtI/EhDrMS1e3Dy40cdrNxenCLqX8QVM1Mg4ln4/ECk14olZPk/Fz6CpMLvosKlRW88I9b8Ujlln0MOJMyZ/1vZr5aJGAVJiCFA7m77hH5j2xFCYh1AbfBHqbjunh7hZI= 
+    - name: DB_NAME
+      value: vault:v1:1Vqmm5JUcnLsDERbvI6/n4uxcnuQt4KcRJFmhACEtvGij4MP2Q9c+zg=
+    - name: DB_HOST
+      value: vault:v1:X7wDPmk0qPR71t00+CXuIrF0870Aqe3RNYfnz5CRWuM+6Ux+rhBur3t8plEkq+dKpCa7kQQ2XsiVjUXlxHu4BixhTtkV1uvhP3wDP7+RuSv7
+    - name: TASK_TIME_LIMIT
+      value: vault:v1:ldMazzlaHGNTbgCjiA1f0dezBOf/46WA18AX7Gamiw==
+    - name: WORKER_MAX_TASKS_PER_CHILD
+      value: vault:v1:wm8weNTMakWW5aWtQqxFT/ZNNbsxGrpFOKWEKaWT4Q==
+    - name: WORKER_MAX_MEMORY_PER_CHILD
+      value: vault:v1:bHe0V1TsMWeozcoFUo+zvv+yq3aeezITaE6O7qr5jwxLQHI=
+    - name: ELASTICSEARCH_HOST
+      value: vault:v1:kQwP8HCbHWI3oD+kUGHgxqlMUiCkO9lNkU0BdoSDrdta++iixFrGaESBTr0/19H9
+    - name: ELASTICSEARCH_PORT
+      value: vault:v1:/ouet3D7r0k34qKKsFw7h8BoE1MkiwzouWFYMnX3nNo=
+    - name: SECRET_KEY
+      value: vault:v1:wXAZGhR+fZP2bDOsAiSn2pvzoQPhCtL8CwbzVV3ZFRzqgbPZjgKIHXwyIdfBOY8RN8n+
+    - name: REDBEAT_KEY_PREFIX
+      value: vault:v1:4jfmPG9RorbZVWjTeWXXD52dnnRmJobyM+YUkTKtiTcj7zY=
+    - name: REDBEAT_DISTRIBUTOR_TASK_NAME   
+      value: vault:v1:oDyXTPHr+6In5GC6GQKXibGqYE8R5ecbpwxY4Ns/+RdCQLvPnsCs807pFOpopD6A15uMeXtM
+    - name: DB_PORT
+      value: vault:v1:NCMnDWwIfPQH4pTlquyJg/6DKl0IijoE3AOEWOjuAzI=
+    - name: RABBITMQ_DEFAULT_VHOST
+      value: vault:v1:1Vqmm5JUcnLsDERbvI6/n4uxcnuQt4KcRJFmhACEtvGij4MP2Q9c+zg=
+    - name: RABBITMQ_HOST
+      value: vault:v1:JoN5vge0BbS6nv15aqR3WRhGR8DOs+YEgj6phyqzqv1rwtXw/+jisNV3kkUUShdeXvBIiukj1ehZsAocwFSm4AO0PjSVTDsRZSUOcUzHcVS5qpk1eyuxAnXTa8jm
+    - name: RABBITMQ_PORT
+      value: vault:v1:bLuDZuD5hy3rGt9RcGpKPVJcqVwmd97KYj0kGkJxO6Q= 
+    - name: LOGGING_FILENAME
+      value: vault:v1:P6b6Eq0CL3O+tPQ0hNHiOvlrQCidaKXUiwnZjcCPtq4xHjiFC4gBhF3F/HA=
+    - name: LOGGING_LEVEL
+      value: vault:v1:KVPE38DiCgec0HGnATYXUysX8jwTsJFW0EBsa+a7EXc=
+    - name: DEBUG
+      value: vault:v1:+hSVTLFaZ01c9Frg6vltKy36X+YiIq8jF70B0JspYIET
+    - name: RABBITMQ_DEFAULT_USER
+      value: vault:v1:II1qOcqqKwHTgP4oBTMokRB4ZW9aZhher2pD2oDbXa8=
+    - name: RABBITMQ_DEFAULT_PASS
+      value: vault:v1:s6bjwDtNLw9YhlZqsXRk8h2qFspd69usqGgLgdhqvS2hdnwNy9tjoL+JX3ae
+    - name: SERVER
+      value: vault:v1:mjuyzwkZL74OFwTsDtNfWG3Fz8XaNapkGh4GTA0HuxaDIlJVzx2tFm8hOXbXnVwhZTw=
+    - name: RABBITMQ_PASSWORD
+      value: vault:v1:s6bjwDtNLw9YhlZqsXRk8h2qFspd69usqGgLgdhqvS2hdnwNy9tjoL+JX3ae
+    - name: DB_PASSWORD
+      value: vault:v1:hwhQ+RKvDgTFvp4zuRubM6x4tfSBaTyvn+dzYvbZ2a94UvStP0pj
+    - name: MYSQL_ROOT_PASSWORD
+      value: vault:v1:hwhQ+RKvDgTFvp4zuRubM6x4tfSBaTyvn+dzYvbZ2a94UvStP0pj
+
+mysql:
+  enabled: true
+  image:
+    repository: traviixxx/uhreqat
+    tag: mysql-qat1.1.0
+  primary:
+    extraEnvVarsSecret: qat-uhre-1
+  auth:
+    rootPassword: MYSQL_ROOT_PASSWORD
+    createDatabase: true
+    database: universal_hre
+    username: user
+    password: DB_PASSWORD
+
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: true
+    existingSecret: qat-uhre-1
+    existingSecretPasswordKey: redispass
+
+rabbitmq:
+  enabled: true
+  image:
+    tag: 3.11.9-debian-11-r1
+  extraEnvVarsSecret: qat-uhre-1
+  auth:
+    username: user
+    password: RABBITMQ_PASSWORD
+  extraConfiguration: |-
+    default_vhost = universal_hre
+    default_permissions.configure = .*
+    default_permissions.read = .*
+    default_permissions.write = .*
+
+image:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-bo
+  pullPolicy: Always
+  tag: 1.1.3
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 1
+
+service:
+  type: ClusterIP
+  serverPort: 8000
+  targetPort: 8000
+  protocol: TCP
+
+
+beatimage:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-beat
+  pullPolicy: Always
+  tag: 1.1.3
+
+cronimage:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-cron
+  pullPolicy: Always
+  tag: 1.1.3
+
+workerimage:
+  repository: geocomply.jfrog.io/apps-uhre-bo-docker-dev-local/uhre-worker
+  pullPolicy: Always
+  tag: 1.1.3
+
+
+Container: 
+  name: qat-uhre-1
+  env:
+    - name: BROKER_URL 
+      secret: qat-uhre-1/BROKER_URL
+    - name: RESULT_BACKEND_URL
+      secret: qat-uhre-1/RESULT_BACKEND_URL
+    - name: DB_URL 
+      secret: qat-uhre-1/DB_URL
+    - name: ELASTICSEARCH_URL
+      secret: qat-uhre-1/ELASTICSEARCH_URL
+    - name: REDIS_URI 
+      secret: qat-uhre-1/REDIS_URI
+    - name: REDBEAT_REDIS_URI 
+      secret: qat-uhre-1/REDBEAT_REDIS_URI
+    - name: DB_USER
+      secret: qat-uhre-1/DB_USER
+    - name: DB_PASSWORD
+      secret: qat-uhre-1/DB_PASSWORD
+    - name: DB_NAME
+      secret: qat-uhre-1/DB_NAME
+    - name: DB_HOST
+      secret: qat-uhre-1/DB_HOST
+    - name: TASK_TIME_LIMIT
+      secret: qat-uhre-1/TASK_TIME_LIMIT
+    - name: WORKER_MAX_TASKS_PER_CHILD
+      secret: qat-uhre-1/WORKER_MAX_TASKS_PER_CHILD
+    - name: WORKER_MAX_MEMORY_PER_CHILD
+      secret: qat-uhre-1/WORKER_MAX_MEMORY_PER_CHILD
+    - name: ELASTICSEARCH_HOST
+      secret: qat-uhre-1/ELASTICSEARCH_HOST
+    - name: ELASTICSEARCH_PORT
+      secret: qat-uhre-1/ELASTICSEARCH_PORT
+    - name: ELASTICSEARCH_USER
+      secret: qat-uhre-1/elasticuser
+    - name: ELASTICSEARCH_PASSWORD
+      secret: qat-uhre-1/elasticpass
+    - name: LOGGING_FILENAME
+      secret: qat-uhre-1/LOGGING_FILENAME
+    - name: LOGGING_LEVEL
+      secret: qat-uhre-1/LOGGING_LEVEL
+    - name: SMTP_USER
+      secret: qat-uhre-1/SMTP_USER
+    - name: SMTP_PASSWORD
+      secret: qat-uhre-1/SMTP_PASSWORD
+    - name: RABBITMQ_HOST
+      secret: qat-uhre-1/RABBITMQ_HOST
+    - name: RABBITMQ_PORT
+      secret: qat-uhre-1/RABBITMQ_PORT
+    - name: RABBITMQ_DEFAULT_USER
+      secret: qat-uhre-1/RABBITMQ_DEFAULT_USER
+    - name: RABBITMQ_DEFAULT_PASS
+      secret: qat-uhre-1/RABBITMQ_DEFAULT_PASS
+    - name: RABBITMQ_DEFAULT_VHOST
+      secret: qat-uhre-1/RABBITMQ_DEFAULT_VHOST
+    - name: REDIS_PASSWORD
+      secret: qat-uhre-1/redispass
+    - name: DEBUG
+      secret: qat-uhre-1/DEBUG
+    - name: SECRET_KEY
+      secret: qat-uhre-1/SECRET_KEY
+    - name: REDBEAT_KEY_PREFIX
+      secret: qat-uhre-1/REDBEAT_KEY_PREFIX
+    - name: REDBEAT_DISTRIBUTOR_TASK_NAME   
+      secret: qat-uhre-1/REDBEAT_DISTRIBUTOR_TASK_NAME
+    - name: DJANGO_SUPERUSER_USERNAME
+      secret: qat-uhre-1/djangouser
+    - name: DJANGO_SUPERUSER_PASSWORD
+      secret: qat-uhre-1/djangopass
+    - name: DJANGO_SUPERUSER_EMAIL
+      secret: qat-uhre-1/djangomail
+    - name: SERVER
+      secret: qat-uhre-1/SERVER
+    - name: RABBITMQ_PASSWORD
+      secret: qat-uhre-1/RABBITMQ_PASSWORD
+    - name: MYSQL_ROOT_PASSWORD
+      secret: qat-uhre-1/MYSQL_ROOT_PASSWORD
+
+
