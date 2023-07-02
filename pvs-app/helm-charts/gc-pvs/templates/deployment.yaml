@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    {{- if .Values.reloader.enabled }}
+    secret.reloader.stakater.com/reload: {{ .Values.reloader.secret }}
+    {{- end }}
+  name: {{ .Values.nameOverride }}
+  labels:
+    app: {{ .Values.nameOverride }}
+spec:
+{{- if and (.Values.replicas) (eq .Values.autoscaling.enabled false) }}
+  replicas: {{ .Values.replicas }}
+{{- end }}
+  revisionHistoryLimit: {{ default 3 .Values.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      app: {{ .Values.nameOverride }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nameOverride }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
+      initContainers:
+        - name: go-render
+          env:
+          {{- include "gc-pvs.containerEnv" .Values.initContainer.env | nindent 10 }}
+          volumeMounts:
+            - mountPath: /data
+              name: data
+          image: {{ .Values.initContainer.image.name }}:{{ .Values.initContainer.image.tag }}
+          imagePullPolicy: "Always"
+          command: [ 'sh', '-c', {{ .Values.initContainer.shellCommand }} ]
+      containers:
+        - name: {{ .Values.nameOverride }}
+          {{- range .Values.containers }}
+          image: {{ .image.name }}:{{ .image.tag }}
+          imagePullPolicy: {{ .image.imagePullPolicy }}
+          {{- end }}
+          ports:
+            - containerPort: 3000
+          {{- include "gc-pvs.resources" . | nindent 10 }}
+          {{- include "gc-pvs.probes" . | nindent 10 }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: data
+          {{- if .Values.shellCommand }}
+          command: ['sh', '-c', {{ .Values.shellCommand }} ]
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - emptyDir: {}
+          name: data

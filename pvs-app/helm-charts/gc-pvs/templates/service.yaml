@@ -1,0 +1,17 @@
+{{- range $r := .Values.services }}
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ $r.name }}
+spec:
+  selector:
+    app: {{ $r.name }}
+  ports:
+  - name: {{ $r.name | default "http" }}
+    port: {{ $r.port }}
+    targetPort: {{ $r.targetPort | default $r.port }}
+    protocol: {{ $r.protocol | default "TCP" }}
+---
+{{- end }}
+
+---

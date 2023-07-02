@@ -1,0 +1,106 @@
+externalSecret:
+  - name: stg-pvs
+    clusterStoreName: external-secrets-reader
+    target:
+      name: pvs
+    data:
+      - secretKey: mongo_username
+        key: environment/stg-pvs
+      - secretKey: mongo_password
+        key: environment/stg-pvs
+      - secretKey: logger_console_level
+        key: environment/stg-pvs
+      - secretKey: logger_ecs_format_enable
+        key: environment/stg-pvs
+      - secretKey: integrity_allowed_window_milis
+        key: environment/stg-pvs
+      - secretKey: integrity_token_expiry_min
+        key: environment/stg-pvs
+      - secretKey: integrity_token_delete_after_expired_min
+        key: environment/stg-pvs
+      - secretKey: gsa_type
+        key: environment/stg-pvs
+      - secretKey: gsa_project_id
+        key: environment/stg-pvs
+      - secretKey: gsa_private_key_id
+        key: environment/stg-pvs
+      - secretKey: gsa_private_key
+        key: environment/stg-pvs
+      - secretKey: gsa_client_email
+        key: environment/stg-pvs
+      - secretKey: gsa_client_id
+        key: environment/stg-pvs
+      - secretKey: gsa_auth_uri
+        key: environment/stg-pvs
+      - secretKey: gsa_token_uri
+        key: environment/stg-pvs
+      - secretKey: gsa_auth_provider_x509_cert_url
+        key: environment/stg-pvs
+      - secretKey: gsa_client_x509_cert_url
+        key: environment/stg-pvs
+
+initContainer:
+  shellCommand: "go run template.go && cp production.yml /data/"
+  env:
+    - name: REDIS_HOST
+      value: "redis-cluster"
+    - name: REDIS_PORT
+      value: "'6379'"
+    - name: REDIS_OPTIONS_KEY_PREFIX
+      value: "stg"
+    - name: MONGODB_URL
+      value: "mongodb://mongo01-int.geocomply.net:27017/gc_stg_pvs"
+    - name: MONGODB_APPLICATION_USER
+      secret: pvs/mongo_username
+    - name: MONGODB_APPLICATION_PASS
+      secret: pvs/mongo_password
+    - name: LOGGER_CONSOLE_LEVEL
+      secret: pvs/logger_console_level
+    - name: LOGGER_ECS_FORMAT_ENABLE
+      secret: pvs/logger_ecs_format_enable
+    - name: INTEGRITY_ALLOWED_WINDOW_MILIS
+      secret: pvs/integrity_allowed_window_milis
+    - name: INTEGRITY_TOKEN_EXPIRY_MIN
+      secret: pvs/integrity_token_expiry_min
+    - name: INTEGRITY_TOKEN_DELETE_AFTER_EXPIRED_MIN
+      secret: pvs/integrity_token_delete_after_expired_min
+    - name: GSA_TYPE
+      secret: pvs/gsa_type
+    - name: GSA_PROJECT_ID
+      secret: pvs/gsa_project_id
+    - name: GSA_PRIVATE_KEY_ID
+      secret: pvs/gsa_private_key_id
+    - name: GSA_PRIVATE_KEY
+      secret: pvs/gsa_private_key
+    - name: GSA_CLIENT_EMAIL
+      secret: pvs/gsa_client_email
+    - name: GSA_CLIENT_ID
+      secret: pvs/gsa_client_id
+    - name: GSA_AUTH_URI
+      secret: pvs/gsa_auth_uri
+    - name: GSA_TOKEN_URI
+      secret: pvs/gsa_token_uri
+    - name: GSA_AUTH_PROVIDER_X509_CERT_URL
+      secret: pvs/gsa_auth_provider_x509_cert_url
+    - name: GSA_CLIENT_X509_CERT_URL
+      secret: pvs/gsa_client_x509_cert_url
+
+  image:
+    name: geocomply.jfrog.io/apps-gc-pvs-docker-prod-local/init-container
+    tag: v1.0.0
+
+replicas: 1
+
+ingress:
+  annotations: {}
+  dnsServiceName: gc-pvs-stg
+  tls:
+    secretName: ssl-cert-dev.g7y.io
+
+containers:
+  - image:
+      name: geocomply.jfrog.io/apps-gc-pvs-docker-prod-local/gc-pvs
+      tag: v1.0.0
+      imagePullPolicy: Always
+
+shellCommand: "NODE_ENV=production node --max-old-space-size=800 index.js"

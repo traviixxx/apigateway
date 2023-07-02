@@ -1,0 +1,17 @@
+livenessProbe:
+  httpGet:
+    path: /v1/health
+    port: 3000
+  initialDelaySeconds: 5
+  periodSeconds: 3
+  failureThreshold: 1
+  successThreshold: 1
+
+readinessProbe:
+  httpGet:
+    path: /v1/health
+    port: 3000
+  initialDelaySeconds: 5
+  periodSeconds: 3
+  failureThreshold: 1
+  successThreshold: 1
