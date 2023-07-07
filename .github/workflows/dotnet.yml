@@ -22,9 +22,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test PlayStudios.MyService
+      run: dotnet test apigateway/PlayStudios.MyService
     - name: Publish
-      run: dotnet publish PlayStudios.MyService/PlayStudios.MyService.WebApi/ \ 
+      run: dotnet publish apigateway/PlayStudios.MyService/PlayStudios.MyService.WebApi
+/PlayStudios.MyService.WebApi.csproj \ 
            -c Release \ 
            -o ./dist
     - name: Upload a Build Artifact
