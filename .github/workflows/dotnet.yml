@@ -16,18 +16,18 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 3.1.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test ./PlayStudios.MyService/PlayStudios.MyService.WebApi.Tests/PlayStudios.MyService.WebApi.Tests.csproj
+      run: dotnet test ./PlayStudios.MyService/PlayStudios.MyService.WebApi.Tests/
     - name: Publish
-      run: dotnet publish ./PlayStudios.MyService/PlayStudios.MyService.WebApi/PlayStudios.MyService.WebApi.csproj -c Release  -o ./dist
+      run: dotnet publish ./PlayStudios.MyService/PlayStudios.MyService.WebApi/ -c Release  -o ./dist
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
         name: API
-        path: PlayStudios.MyService/API/**
+        path: ./PlayStudios.MyService/API/**
         if-no-files-found: error
