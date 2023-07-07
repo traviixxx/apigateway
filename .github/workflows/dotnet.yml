@@ -24,8 +24,7 @@ jobs:
     - name: Test
       run: dotnet test apigateway/PlayStudios.MyService
     - name: Publish
-      run: dotnet publish apigateway/PlayStudios.MyService/PlayStudios.MyService.WebApi
-/PlayStudios.MyService.WebApi.csproj \ 
+      run: dotnet publish apigateway/PlayStudios.MyService/PlayStudios.MyService.WebApi/PlayStudios.MyService.WebApi.csproj \ 
            -c Release \ 
            -o ./dist
     - name: Upload a Build Artifact
