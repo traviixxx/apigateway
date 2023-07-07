@@ -29,5 +29,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: API
-        path: ./PlayStudios.MyService/API/**
+        path: ./PlayStudios.MyService/**
         if-no-files-found: error
