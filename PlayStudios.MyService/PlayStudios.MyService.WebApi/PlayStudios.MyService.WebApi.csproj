@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-  <ProjectReference Include="..\PlayStudios.MyService.WebApi\PlayStudios.MyService.WebApi.csproj" />
-    </ItemGroup>
-
 </Project>
