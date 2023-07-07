@@ -22,10 +22,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test ./PlayStudios.MyService/
+      run: dotnet test ..\PlayStudios.MyService.WebApi\PlayStudios.MyService.WebApi.csproj
     - name: Publish
-      run: dotnet publish ./PlayStudios.MyService/PlayStudios.MyService.WebApi/ \
-            -c Release \ 
+      run: dotnet publish ..\PlayStudios.MyService.WebApi\PlayStudios.MyService.WebApi.csproj
+            -c Release 
             -o ./dist
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
