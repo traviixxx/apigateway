@@ -20,9 +20,16 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./PlayStudios.MyService/
+    - name: Publish
+      run: dotnet publish \ 
+             ./PlayStudios.MyService/PlayStudios.MyService.WebApi/ \
+             -c Release \
+             -o ./PlayStudios.MyService/api
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: demoapi
+        path: ./PlayStudios.MyService/api/**
+        if-no-files-found: error
