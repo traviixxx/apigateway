@@ -31,5 +31,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: demoapi
-        path: ./PlayStudios.MyService/api/**
+        path: ./dist/**
         if-no-files-found: error
