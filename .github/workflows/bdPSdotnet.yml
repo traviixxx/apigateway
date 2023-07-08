@@ -26,7 +26,7 @@ jobs:
       run: dotnet publish \ 
              ./PlayStudios.MyService/PlayStudios.MyService.WebApi/ \
              -c Release \
-             -o ./PlayStudios.MyService/api
+             -o ./dist
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
