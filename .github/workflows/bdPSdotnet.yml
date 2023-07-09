@@ -23,4 +23,8 @@ jobs:
       with:
         push: false
         context: ./PlayStudios.MyService/PlayStudios.MyService.WebApi
+    - name: Job result
+      if: ${{ job.status == 'success' }}
+      run: |
+        echo "### The job has been finished successfully! :smiley:" >> $GITHUB_STEP_SUMMARY
 
