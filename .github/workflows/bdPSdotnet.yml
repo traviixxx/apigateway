@@ -25,7 +25,3 @@ jobs:
         context: ./PlayStudios.MyService/PlayStudios.MyService.WebApi
         tag: "test_image:latest"
         load: true
-    - name: Upload image
-      uses: ishworkh/docker-image-artifact-upload@v1.0.0
-      with:
-        image: "test_image:latest"
