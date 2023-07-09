@@ -12,4 +12,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
 WORKDIR /app
 COPY --from=build-env /app/out .
 
-ENTRYPOINT ["dotnet", "PlayStudios.MyService.Webapi.dll"]
+ENTRYPOINT ["dotnet", "PlayStudios.MyService.WebApi.dll"]
