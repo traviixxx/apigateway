@@ -4,10 +4,6 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
     inputs:
       hubAddressGroupObject:
@@ -15,10 +11,12 @@ on:
         description: 'Deploy service 🚀🚀🚀'
         required: true
         default: 'BACKEND_SERVICE'
-        options:
-          - 'BACKEND_SERVICE'
     branches:
       - main
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
