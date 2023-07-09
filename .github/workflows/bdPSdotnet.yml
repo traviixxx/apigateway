@@ -8,6 +8,17 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      hubAddressGroupObject:
+        type: choice
+        description: 'Deploy service 🚀🚀🚀'
+        required: true
+        default: 'BACKEND_SERVICE'
+        options:
+          - 'BACKEND_SERVICE'
+    branches:
+      - main
 
 jobs:
   build:
