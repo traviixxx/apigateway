@@ -8,13 +8,20 @@ on:
     inputs:
       hubAddressGroupObject:
         type: choice
-        description: 'Deploy service 🚀🚀🚀'
+        description: 'Build service 🚀🚀🚀'
         required: true
         default: 'demoapi'
         options:
           - 'demoapi'
     branches:
       - main
+  push:
+    branches: [ main ]
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize]
 
 jobs:
   build:
