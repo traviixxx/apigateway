@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: netapi
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demoapi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: demoapi
+    spec:
+      containers:
+        - image: {replace your repositories}
+          imagePullPolicy: Always
+          command: ["dotnet"]
+          args: ["dotnet", "PlayStudios.MyService.WebApi.dll"]
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: static-volume
+              mountPath: /app/content/static
+            - name: media-volume
+              mountPath: /app/content/media
+      volumes:
+        - name: static-volume
+          emptyDir: {}
+        - name: media-volume
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: service-api
+spec:
+  ports:
+    - port: 5000
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: demoapi
