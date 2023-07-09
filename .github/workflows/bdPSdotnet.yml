@@ -10,13 +10,11 @@ on:
         type: choice
         description: 'Deploy service 🚀🚀🚀'
         required: true
-        default: 'BACKEND_SERVICE'
+        default: 'demoapi'
+        options:
+          - 'demoapi'
     branches:
       - main
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
